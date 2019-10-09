@@ -12,7 +12,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-archivesBaseName = "signal-protocol-android"
+archivesBaseName = "signal-protocol-android-protolite"
 version          = version_number
 group            = group_info
 
@@ -59,9 +59,10 @@ uploadArchives {
     repositories.mavenDeployer {
         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-        repository(url: sonatypeRepo) {
-            authentication(userName: whisperSonatypeUsername, password: whisperSonatypePassword)
-        }
+        // don't have the creds, build maven local repo only
+        //repository(url: sonatypeRepo) {
+        //    authentication(userName: whisperSonatypeUsername, password: whisperSonatypePassword)
+        //}
 
         pom.project {
             name 'signal-protocol-android'
